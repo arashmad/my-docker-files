@@ -1,15 +1,10 @@
 ################# Usage #################
 
-
 # [BUILD]
 # sudo docker build . -t geoserver:2.18.2
 
 # [TEST]
 # curl localhost:8080
-
-# [REFERENCE]
-# https://medium.com/@ghimirehillson/installing-geoserver-on-linux-ubuntu-18-04-mint-d5f54d70ff32
-
 
 ################# Usage #################
 
