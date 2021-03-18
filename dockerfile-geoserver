@@ -1,12 +1,17 @@
-################# Usage #################
+#################[ Usage ]#################
 
 # [BUILD]
 # sudo docker build . -t geoserver:2.18.2
 
 # [TEST]
-# curl localhost:8080
+# sudo docker run --rm -it -p 8080:8080 geoserver:2.18.2
+# ./startup.sh
+# open localhost:8080 in your browser
 
-################# Usage #################
+# [REFERENCE]
+# https://medium.com/@ghimirehillson/installing-geoserver-on-linux-ubuntu-18-04-mint-d5f54d70ff32
+
+#################[ Usage ]#################
 
 FROM ubuntu:20.04
 
@@ -18,10 +23,14 @@ RUN apt install openjdk-8-jdk -y
 
 RUN export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 RUN export PATH=$PATH:$JAVA_HOME/bin
+RUN export _JAVA_OPTIONS=-Xmx4096m
 
 RUN java -version
 
 COPY ./geoserver-2.18.2-bin.zip /tmp/
 RUN unzip /tmp/geoserver-2.18.2-bin.zip -d /tmp/geoserver
+
+RUN export GEOSERVER_HOME=/tmp/geoserver
+RUN export GEOSERVER_DATA_DIR=/tmp/geoserver/data_dir
+
 WORKDIR /tmp/geoserver/bin
-RUN ./startup.sh
